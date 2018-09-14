@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Unmount cryptsetup devices.
+
+# (c) 2018, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+if [ $# -ne 1 ]
+then
+    echo "Usage: $(basename $0) MOUNTPOINT"
+    exit 2
+fi
+
+MAPPER_NAME=$(mount | grep /dev/mapper/ | grep " $1 " | cut -d " " -f 1)
+
+if [ ${#MAPPER_NAME} -eq 0 ]
+then
+    echo "$1 doesn't appear to be crypt-mounted..."
+    exit 2
+fi
+
+umount $1
+
+if [ $? -ne 0 ]
+then
+    exit $?
+fi
+
+sleep 1
+
+cryptsetup close $MAPPER_NAME
+
+exit $?
