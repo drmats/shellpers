@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# SOCKS (v5) proxy over SSH.
+
+# (c) 2018, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+if [ $# -lt 1 ] || [ $# -gt 3 ]
+then
+    echo "Usage: $(basename $0) USER@REMOTEHOST [REMOTEPORT] [LOCALPORT]"
+    exit 2
+fi
+
+REMOTEPORT=22
+LOCALPORT=9150
+
+if [ $# -eq 2 ] || [ $# -eq 3 ]
+then
+    REMOTEPORT=$2
+fi
+
+if [ $# -eq 3 ]
+then
+    LOCALPORT=$3
+fi
+
+ssh -D $LOCALPORT $1 -p $REMOTEPORT -N -C
