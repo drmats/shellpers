@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Run pgAdmin4
+
+# (c) 2018, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+# https://www.pgadmin.org/download/pgadmin-4-python-wheel/
+
+
+
+
+# cd ~/.local/
+# virtualenv-3 pgadmin4
+# cd pgadmin4
+# source bin/activate
+# pip3 install https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v3.3/pip/pgadmin4-3.3-py2.py3-none-any.whl
+
+
+
+
+# ~/.local/pgadmin4/lib64/python3.6/site-packages/pgadmin4/config_local.py
+#
+# import os
+#
+# DATA_DIR = os.path.realpath(os.path.expanduser(u'~/.pgadmin/'))
+# LOG_FILE = os.path.join(DATA_DIR, 'pgadmin4.log')
+# SQLITE_PATH = os.path.join(DATA_DIR, 'pgadmin4.db')
+# SESSION_DB_PATH = os.path.join(DATA_DIR, 'sessions')
+# STORAGE_DIR = os.path.join(DATA_DIR, 'storage')
+# SERVER_MODE = False
+
+
+
+
+cd ~/.local/pgadmin4/
+. ./bin/activate
+python ./lib/python3.6/site-packages/pgadmin4/pgAdmin4.py
