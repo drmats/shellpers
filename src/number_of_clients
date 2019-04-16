@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Count unique client IPs.
+
+# (c) 2019, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+if [ $# -ne 1 ]
+then
+    echo "Usage: $(basename $0) [access/error]_log"
+    exit 2
+fi
+
+cat $1 | awk '{print $1}' | uniq | wc -l
+
+exit $?
