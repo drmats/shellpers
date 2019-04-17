@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Generate animated GIF with custom palette using ffmpeg.
+
+# (c) 2019, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+if [ $# -ne 5 ]
+then
+    echo "Usage: $(basename $0) start_time duration scale-x input output"
+    echo "E.g.: $(basename $0) 00:02:10.00 00:00:3.0 -1 in.mp4 out.gif"
+    exit 2
+fi
+
+palette="./$4.palette.png"
+filters="fps=15,scale=$3:-1:flags=lanczos"
+
+ffmpeg -v error -ss $1 -t $2 -i $4 -vf "$filters,palettegen=stats_mode=full" -y $palette
+ffmpeg -v error -ss $1 -t $2 -i $4 -i $palette -lavfi "$filters [x]; [x][1:v] paletteuse" -y $5
+
+rm $palette
+
+exit 0
