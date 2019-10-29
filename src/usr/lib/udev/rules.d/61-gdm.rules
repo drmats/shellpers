@@ -1,0 +1,2 @@
+# DON'T disable Wayland when using the proprietary nvidia driver (line below should be commented out)
+# DRIVER=="nvidia", RUN+="/usr/libexec/gdm-disable-wayland"
