@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=rfs
+Comment=Normalize fonts (1.0x scale).
+Icon=applications-other
+Exec=gsettings reset org.gnome.desktop.interface text-scaling-factor
+Actions=
+Categories=X-GNOME-Other;

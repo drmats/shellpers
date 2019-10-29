@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=fs
+Comment=Enlarge fonts (1.25x scale).
+Icon=applications-other
+Exec=gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
+Actions=
+Categories=X-GNOME-Other;
