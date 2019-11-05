@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Nightly
+Comment=Test the Web
+Icon=sh -c "$HOME/.local/nightly/browser/chrome/icons/default/default128.png"
+Exec=sh -c "$HOME/.local/nightly/firefox %u -p nightly -no-remote"
+Actions=
+Categories=Network;
+StartupNotify=true

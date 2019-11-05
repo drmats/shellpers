@@ -1,0 +1,21 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Firefox
+GenericName=Web Browser
+Comment=Browse the Web
+Icon=firefox
+Exec=firefox %u -p default-release
+Actions=new-window;new-private-window;
+MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;
+Categories=Network;WebBrowser;
+Keywords=web;browser;internet;
+StartupNotify=true
+
+[Desktop Action new-window]
+Name=Open a New Window
+Exec=firefox --new-window %u -p default-release
+
+[Desktop Action new-private-window]
+Name=Open a New Private Window
+Exec=firefox --private-window %u -p default-release
