@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Prevent tracker-* processes from respawning.
+
+# (c) 2019, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+systemctl --user mask tracker-extract.service tracker-miner-fs.service tracker-miner-rss.service tracker-store.service tracker-writeback.service
+echo "Don't forget to 'ln -s' all tracker-*.desktop files in .config/autostart directory."
+
+exit 0
