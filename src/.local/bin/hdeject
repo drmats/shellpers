@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Unmount cryptsetup devices, close mapper, power-off.
+
+# (c) 2019, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+if [ $# -ne 1 ]
+then
+    echo "Usage: $(basename $0) DEVICE_E2FSLABEL"
+    exit 2
+fi
+
+MAPPER_NAME=$(mount | grep /dev/mapper/ | grep "/$1 " | cut -d " " -f 1)
+
+if [ ${#MAPPER_NAME} -eq 0 ]
+then
+    echo "$1 doesn't appear to be crypt-mounted..."
+    exit 2
+fi
+
+MOUNT_POINT=$(mount | grep /dev/mapper/ | grep "/$1 " | cut -d " " -f 3)
+DEVICE_NAME=$(cryptsetup -v status $MAPPER_NAME | grep device | cut -d " " -f 5)
+
+echo umount $MOUNT_POINT
+
+if [ $? -ne 0 ]
+then
+    exit $?
+fi
+
+sleep 1
+
+echo cryptsetup close $MAPPER_NAME
+
+if [ $? -ne 0 ]
+then
+    exit $?
+fi
+
+sleep 1
+
+echo udisksctl power-off -b $DEVICE_NAME
+
+exit $?
