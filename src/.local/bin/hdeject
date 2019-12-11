@@ -8,41 +8,59 @@
 
 
 
+# print usage
 if [ $# -ne 1 ]
 then
     echo "Usage: $(basename $0) DEVICE_E2FSLABEL"
     exit 2
 fi
 
-MAPPER_NAME=$(mount | grep /dev/mapper/ | grep "/$1 " | cut -d " " -f 1)
 
+# obtain mapper device
+MAPPER_NAME=$(mount | grep /dev/mapper/ | grep "/$1 " | cut -d " " -f 1)
 if [ ${#MAPPER_NAME} -eq 0 ]
 then
     echo "$1 doesn't appear to be crypt-mounted..."
     exit 2
 fi
 
+
+# get mountpoint and physical device name
 MOUNT_POINT=$(mount | grep /dev/mapper/ | grep "/$1 " | cut -d " " -f 3)
-DEVICE_NAME=$(cryptsetup -v status $MAPPER_NAME | grep device | cut -d " " -f 5)
+MAPPER_DEVICE_NAME=$(cryptsetup -v status $MAPPER_NAME | grep device | cut -d " " -f 5)
+DEVICE_NAME=$(lsblk -n $MAPPER_DEVICE_NAME -o pkname | head -n 1)
+if [ ${#DEVICE_NAME} -eq 0 ]
+then
+    DEVICE_NAME=$MAPPER_DEVICE_NAME
+else
+    DEVICE_NAME=/dev/$DEVICE_NAME
+fi
 
+
+# unmount partition
 echo umount $MOUNT_POINT
-
+umount $MOUNT_POINT
 if [ $? -ne 0 ]
 then
     exit $?
 fi
-
 sleep 1
 
+
+# close mapper device
 echo cryptsetup close $MAPPER_NAME
-
+cryptsetup close $MAPPER_NAME
 if [ $? -ne 0 ]
 then
     exit $?
 fi
-
 sleep 1
 
-echo udisksctl power-off -b $DEVICE_NAME
 
+# power off physical device
+echo udisksctl power-off -b $DEVICE_NAME
+udisksctl power-off -b $DEVICE_NAME
+
+
+# all done
 exit $?
