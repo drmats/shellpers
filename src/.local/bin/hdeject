@@ -8,6 +8,14 @@
 
 
 
+# check UID (non-root user can't initialize device mapper)
+if [ $(id -u) -ne 0 ]
+then
+    echo "You must have root privileges to do that."
+    exit 2
+fi
+
+
 # print usage
 if [ $# -ne 1 ]
 then
