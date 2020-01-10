@@ -19,7 +19,7 @@ I use them. You can use them too, if you want.
 
 ## how?
 
-Clone the repo and link contents of the `src/.local/bin` folder
+Clone the repo and link contents of the `src/home/user/.local/bin` folder
 with your `~/.local/bin` directory. Other useful stuff is also here
 (such as nvidia eGPU configuration).
 
