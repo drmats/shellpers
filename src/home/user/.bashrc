@@ -13,4 +13,7 @@ if [ -f `which powerline-daemon` ]; then
 fi
 
 
+export PS1="[\u@\h \W]\[$(tput bold)\]\[$(tput setaf 2)\]\\$ \[$(tput sgr0)\]"
+
+
 # ...
