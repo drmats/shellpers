@@ -40,7 +40,6 @@ If you've found this useful, you can buy me a 🍺️ or 🍕️ via the [stella
 
 
 
-
 [stellar]: https://learn.stellar.org
 [xcmatspayment]: https://keybase.io/xcmats
 [addressproof]: https://keybase.io/xcmats/sigchain#d0999a36b501c4818c15cf813f5a53da5bfe437875d92262be8d285bbb67614e22
