@@ -12,6 +12,8 @@ Shell helpers.
 A few scripts, configuration files and desktop shortcuts.
 I use them. You can use them too, if you want.
 
+Some __gists__ are also here &ndash; look into the [doc](doc/) directory.
+
 <br />
 
 
