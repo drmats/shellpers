@@ -49,6 +49,8 @@ server {
     gzip_comp_level 3;
     gzip_types      text/plain text/css application/javascript image/*;
 
+    index           index.php index.html index.htm;
+
     error_page      403 404 /404.html;
     error_page      500 502 503 503 /50x.html;
 
@@ -59,22 +61,23 @@ server {
     location / {
         autoindex on;
         try_files $uri $uri/ /index.php =404;
-        index     index.php index.html;
     }
 
-    location ~ [^/]\.php(/|$) {
-        fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+    # (or: include /etc/nginx/default.d/php.conf)
+    location ~ \.(php|phar)(/.*)?$ {
+        fastcgi_split_path_info ^(.+\.(?:php|phar))(/.*)$;
 
         if (!-f $document_root$fastcgi_script_name) {
             return 404;
         }
 
-        fastcgi_param HTTP_PROXY "";
-        fastcgi_pass  php-fpm;
-        fastcgi_index index.php;
-        include       fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+        fastcgi_intercept_errors on;
+        fastcgi_index            index.php;
+        include                  fastcgi_params;
+        fastcgi_param            HTTP_PROXY "";
+        fastcgi_param            SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param            SCRIPT_NAME $fastcgi_script_name;
+        fastcgi_pass             php-fpm;
     }
 }
 ```
