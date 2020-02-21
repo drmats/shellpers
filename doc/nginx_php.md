@@ -79,7 +79,6 @@ server {
 }
 ```
 
-
 ## run nginx
 ```
 # systemctl start nginx
