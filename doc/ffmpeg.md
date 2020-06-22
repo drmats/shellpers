@@ -68,3 +68,13 @@ ffmpeg -ss 00:00:43.5 -i input.mp4 -t 00:00:02.00 -r 15 -s 480x270 output.gif
 ```
 ffmpeg -i input.mp4 -filter:v "setpts=0.5*PTS" output.mp4
 ```
+
+## rotate 180' during recoding
+```
+ffmpeg -i input.mp4 -vf "transpose=2,transpose=2" output.mp4
+```
+
+## force frame rate (30fps)
+```
+ffmpeg -i input.mp4 -r:v 30 output.mp4
+```
