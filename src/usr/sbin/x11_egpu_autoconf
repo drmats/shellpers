@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Detect if system has nvidia vga card and configure xorg accordingly.
+
+# (c) 2020, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+# get an array of vga devices
+devices=()
+mapfile -t devices < <(lspci | awk '/VGA/ { print tolower($5); }')
+
+# is nvidia card present?
+nvidia=0
+
+# search for nvidia in an array of devices
+for dev in "${devices[@]}"
+do
+    if [[ "${dev}" == "nvidia" ]]
+    then
+        nvidia=1
+    fi
+done
+
+# link nvidia config if device is found, clear the config otherwise
+if [ $nvidia -eq 1 ]
+then
+    echo "$(date): detected nvidia card in the system" >> /var/log/x11_egpu_autoconf.log
+    ln -sf /etc/X11/xorg.conf.d/99-nvidia.template /etc/X11/xorg.conf.d/99-display.conf
+else
+    echo "$(date): nvidia card not detected" >> /var/log/x11_egpu_autoconf.log
+    rm -f /etc/X11/xorg.conf.d/99-display.conf
+fi
+
+# all done
+exit $?

@@ -1,0 +1,12 @@
+[Unit]
+Description=Detect eGPU
+After=systemd-user-sessions.service
+Before=graphical.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/x11_egpu_autoconf
+RemainAfterExit=yes
+
+[Install]
+WantedBy=graphical.target
