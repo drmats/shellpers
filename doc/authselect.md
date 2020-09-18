@@ -4,7 +4,7 @@
 ## create custom profile
 
 ```
-# authselect curent
+# authselect current
 # authselect create-profile pamcap-sssd -b sssd
 ```
 
