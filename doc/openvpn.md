@@ -134,6 +134,10 @@ push "redirect-gateway def1 bypass-dhcp"
 push "dhcp-option DNS 208.67.222.222"
 push "dhcp-option DNS 208.67.220.220"
 ...
+client-config-dir /etc/openvpn/ccd
+...
+client-to-client
+...
 ;tls-auth ta.key 0 # This file is secret
 tls-crypt ta.key
 ...
@@ -144,6 +148,14 @@ auth SHA256
 user nobody
 group nobody
 ...
+```
+
+### per-client static ip config (example for `client1`)
+
+```
+# mkdir /etc/openvpn/ccd
+# touch /etc/openvpn/ccd/client1
+# echo "ifconfig-push 10.8.0.10 10.8.0.5" >> /etc/openvpn/ccd/client1
 ```
 
 
@@ -166,11 +178,15 @@ group nobody
     -o $(ip route | awk '/^default via/ {print $5}') \
     -j MASQUERADE
 
+# firewall-cmd --permanent --zone=public \
+    --add-forward-port=port=51413:proto=tcp:toport=51413:toaddr=10.8.0.10
+
 # firewall-cmd --reload
 # firewall-cmd --get-active-zones
 # firewall-cmd --zone=public --list-all
 # firewall-cmd --zone=trusted --list-services
 # firewall-cmd --query-masquerade
+# firewall-cmd --list-forward-ports
 ```
 
 ### append to `/etc/sysctl.d/99-sysctl.conf`
