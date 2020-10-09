@@ -205,6 +205,9 @@ $ chmod 775 ~/client-configs/make_config.sh
 
 ```
 ...
+remote server-name-or-IP 1194
+;remote my-server-2 1194
+...
 user nobody
 group nobody
 ...
