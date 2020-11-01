@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Toggle gnome night-light.
+
+# (c) 2020, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+NIGHT_LIGHT=$(gsettings get org.gnome.settings-daemon.plugins.color night-light-enabled)
+
+if [[ "$NIGHT_LIGHT" == "true" ]]
+then
+    echo "Disabling night light."
+    gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled false
+else
+    echo "Enabling night light."
+    gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+fi

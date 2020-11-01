@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=night-toggle
+Comment=Toggle gnome night light.
+Icon=applications-other
+Exec=night_toggle
+Actions=
+Categories=X-GNOME-Other;
