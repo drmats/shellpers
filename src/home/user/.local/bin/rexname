@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Bulk rename files using provided regex.
+
+# (c) 2020, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+# () - capture groups
+# \1 \2 - references to groups
+
+# print usage
+if [[ "$#" != "3" ]] || [[ "$#" == "4" ]] && [[ "$4" != "--doit" ]]
+then
+    echo "Usage: $(basename $0) glob_pattern match_regex replacement [--doit]"
+    echo "Example:"
+    echo "    $(basename $0) '*' '([^0-9]*])([0-9]+).*' '\2\.\1' --doit"
+    echo "Without [--doit] switch this command only prints what it would do."
+    exit 2
+fi
+
+# act
+if [[ "$4" != "--doit" ]]
+then
+    echo "Preview:"
+fi
+
+for f in $1
+do
+    newname=$(echo "$f" | sed -E "s/$2/$3/g")
+    echo "mv $f $newname"
+    if [[ "$4" == "--doit" ]]
+    then
+        mv $f $newname
+    fi
+done
