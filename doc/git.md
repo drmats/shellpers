@@ -59,3 +59,12 @@ git tag --delete tagname
 ```
 $ git branch -f master other_branch
 ```
+
+## rename signed tag
+```
+$ git tag -s newtag oldtag^{}
+$ git tag -d oldtag
+$ git push origin :refs/tags/oldtag
+$ git push --tags
+$ git pull --prune --tags
+```
