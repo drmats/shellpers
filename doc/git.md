@@ -68,3 +68,13 @@ $ git push origin :refs/tags/oldtag
 $ git push --tags
 $ git pull --prune --tags
 ```
+
+## undo the last commit
+* leave changes unstaged:
+```
+$ git reset --soft HEAD~1
+```
+* discard changes:
+```
+$ git reset --hard HEAD~1
+```
