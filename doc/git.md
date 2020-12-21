@@ -78,3 +78,19 @@ $ git reset --soft HEAD~1
 ```
 $ git reset --hard HEAD~1
 ```
+
+## remotes
+* add remote
+```
+$ git remote add [name] [repo-url]
+```
+
+* set upstream remote branch of different name than local branch
+```
+$ git push -u [remote-name] [local-branch]:[remote-branch]
+```
+
+* non-destructively test pushes
+```
+$ git push ... --dry-run
+```
