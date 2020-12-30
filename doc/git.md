@@ -97,6 +97,12 @@ $ git push ... --dry-run
 
 
 ## print all tag 'headlines'
+* simple
 ```
-$ git tag -n1 | awk '{$1=""; print $0}' | sort | uniq
+$ git tag -n1
+```
+
+* sorted, unique
+```
+$ git tag -n1 | awk '{$1=""; print $0;}' | sort | uniq
 ```
