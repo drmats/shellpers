@@ -94,3 +94,9 @@ $ git push -u [remote-name] [local-branch]:[remote-branch]
 ```
 $ git push ... --dry-run
 ```
+
+
+## print all tag 'headlines'
+```
+$ git tag -n1 | awk '{$1=""; print $0}' | sort | uniq
+```
