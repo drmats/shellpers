@@ -78,3 +78,10 @@ ffmpeg -i input.mp4 -vf "transpose=2,transpose=2" output.mp4
 ```
 ffmpeg -i input.mp4 -r:v 30 output.mp4
 ```
+
+## deshake
+```
+ffmpeg -i input.mp4 -vf vidstabdetect=shakiness=10:accuracy=15 -f null -
+
+ffmpeg -i input.mp4 -vf vidstabtransform=zoom=5:smoothing=30 -vcodec libx264 -preset slow -tune film -crf 20 -an output.mp4
+```
