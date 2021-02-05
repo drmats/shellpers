@@ -51,8 +51,8 @@ $ git remote prune origin
 
 ## delete tags
 ```
-git push --delete origin tagname
-git tag --delete tagname
+$ git push --delete origin tagname
+$ git tag --delete tagname
 ```
 
 ## replace `master` with `other_branch`
