@@ -50,10 +50,15 @@ $ git remote prune origin
 ```
 
 ## delete tags
-```
-$ git push --delete origin tagname
-$ git tag --delete tagname
-```
+* single
+    ```
+    $ git push --delete origin tagname
+    $ git tag --delete tagname
+    ```
+* all
+    ```
+    * git tag | while read -r line; do git tag --delete "$line"; done
+    ```
 
 ## replace `master` with `other_branch`
 ```
