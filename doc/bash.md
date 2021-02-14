@@ -1,23 +1,85 @@
-# bash recipes
+# bash cheatsheet
 
 
-## execute command for every output line
-```bash
-$ command-outputting-some-lines | while read -r line; do some-command "$line"; done
-```
+## conditionals
+* `if`
+    ```bash
+    if test-expression
+    then
+        statements
+    fi
+    ```
+* `if`-`else`
+    ```bash
+    if test-expression
+    then
+        statements
+    elif test-command
+    then
+        statements
+    else
+        statements
+    fi
+    ```
+* `case`
+    ```bash
+    case expression in
+        pattern_1)
+            statements
+            ;;
+        pattern_2)
+            statements
+            ;;
+        pattern_n)
+            statements
+            ;;
+        *)
+            statements
+            ;;
+    esac
+    ```
+
+
+## tests
+* `test EXPRESSION`
+* `[ EXPRESSION ]`
+* `[[ EXPRESSION ]]`
+
+
+## test operators
+* `string1 = string2` within `[ ... ]`
+* `string1 == string2` within `[[ ... ]]`
+* `string1 != string2`
+* `string1 =~ regex`
+* `string1 > string2`
+* `string1 < string2`
+* `-z string` - string length is zero
+* `-n string` - string length is non-zero
+* `integer1 -eq integer2` - equal
+* `integer1 -gt integer2` - greater than
+* `integer1 -lt integer2` - less than
+* `integer1 -ge integer2` - greater or equal
+* `integer1 -le integer2` - less or equal
+* `-h file` - exists and is a symbolic link
+* `-r file` - exists and is readable
+* `-w file` - exists and is writable
+* `-x file` - exists and is executable
+* `-d file` - exists and is a directory
+* `-e file` - exists
+* `-f file` - exists and is a regular file (not a directory or device)
 
 
 ## functions
 * first format
     ```bash
     function_name () {
-        commands
+        statements
     }
     ```
 * second format
     ```bash
     function function_name {
-        commands
+        statements
     }
     ```
 * local variables - use keyword `local`
@@ -50,3 +112,15 @@ $ command-outputting-some-lines | while read -r line; do some-command "$line"; d
     - `"$*"` - expands to `"$1 $2 ... $n"`
     - `"$@"` - expands to `"$1" "$2" ... "$n"`
 * `$?` - exit status of previous command
+* `$!` - PID of the last background job
+
+<br />
+
+
+# bash recipes
+
+
+## execute command for every output line
+```bash
+$ command-outputting-some-lines | while read -r line; do some-command "$line"; done
+```
