@@ -2,6 +2,7 @@
 
 
 ## conditionals
+
 * `if`
     ```bash
     if test-expression
@@ -9,6 +10,7 @@
         statements
     fi
     ```
+
 * `if`-`else`
     ```bash
     if test-expression
@@ -21,6 +23,7 @@
         statements
     fi
     ```
+
 * `case`
     ```bash
     case expression in
@@ -39,14 +42,73 @@
     esac
     ```
 
+<br />
+
+
+## `while` loop
+
+* basic form
+    ```bash
+    while condition
+    do
+        statements
+    done
+    ```
+
+* basic example
+    ```bash
+    i=0
+    while [ $i -lt 10 ]; do
+        echo iteration: $i
+        ((i++))
+    done
+    ```
+
+* infinite loop example
+    ```bash
+    while :
+    do
+        echo "press <ctrl+c> to exit."
+        sleep 1
+    done
+    ```
+
+* read file line-by-line example (`IFS=` prevents line trimming,
+    `-r` for `read` prevents interpreting `\` as escape character)
+    ```bash
+    file=~/.bash_history
+    while IFS= read -r line; do
+        echo $line
+    done < "$file"
+    ```
+
+* `break` and `continue` works as expected
+    ```bash
+    i=0
+    while :; do
+        echo "iteration: $i"
+        if [[ "$i" == "4" ]]; then
+            break
+        fi
+        ((i++))
+    done
+    echo "Done."
+    ```
+
+<br />
+
 
 ## tests
+
 * `test EXPRESSION`
 * `[ EXPRESSION ]`
 * `[[ EXPRESSION ]]`
 
+<br />
+
 
 ## test operators
+
 * `string1 = string2` within `[ ... ]`
 * `string1 == string2` within `[[ ... ]]`
 * `string1 != string2`
@@ -68,26 +130,32 @@
 * `-e file` - exists
 * `-f file` - exists and is a regular file (not a directory or device)
 
+<br />
+
 
 ## functions
+
 * first format
     ```bash
     function_name () {
         statements
     }
     ```
+
 * second format
     ```bash
     function function_name {
         statements
     }
     ```
+
 * local variables - use keyword `local`
     ```bash
     some_function () {
-        local variable='X'
+        local variable="x"
     }
     ```
+
 * returning values - through `exit status`, `global variable` or `stdout`
     ```bash
     my_function () {
@@ -102,6 +170,8 @@
     echo $my_function_result
     echo $fun_result
     ```
+
+<br />
 
 
 ## script/function variables
@@ -122,5 +192,5 @@
 
 ## execute command for every output line
 ```bash
-$ command-outputting-some-lines | while read -r line; do some-command "$line"; done
+$ command-outputting-some-lines | while IFS= read -r line; do some-command "$line"; done
 ```
