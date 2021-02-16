@@ -98,6 +98,64 @@
 <br />
 
 
+## `for` loop
+
+* basic form
+    ```bash
+    for item in list
+    do
+        statements
+    done
+    ```
+
+* basic example
+    ```bash
+    for planet in Mercury Venus Earth Mars
+    do
+        echo "Planet: $planet"
+    done
+    ```
+
+* c-style form
+    ```bash
+    for ((initialization; test-expression; step))
+    do
+        statements
+    done
+    ```
+
+* c-style example
+    ```bash
+    for ((i = 0; i <= 100; i++)); do
+        echo "Counter: $i"
+    done
+    ```
+
+* number range loop
+    ```bash
+    for i in {0..5}; do
+        echo "$i"
+    done
+    ```
+
+* number range loop with custom increment
+    ```bash
+    for i in {0..10..2}; do
+        echo "$i"
+    done
+    ```
+
+* loop over array
+    ```bash
+    declare -a my_array=( "Wing" "Harness" "Reserve" "Helmet" "Vario" )
+    for i in "${my_array[@]}"; do
+        echo "$i"
+    done
+    ```
+
+<br />
+
+
 ## tests
 
 * `test EXPRESSION`
@@ -185,6 +243,8 @@
 * `$!` - PID of the last background job
 
 <br />
+
+
 
 
 # bash recipes
