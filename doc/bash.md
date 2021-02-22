@@ -254,3 +254,9 @@
 ```bash
 $ command-outputting-some-lines | while IFS= read -r line; do some-command "$line"; done
 ```
+
+
+## iterate over files in current directory
+```bash
+$ for file in *; do some-command "$file"; done
+```
