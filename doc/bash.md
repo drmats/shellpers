@@ -156,6 +156,19 @@
 <br />
 
 
+## `until` loop
+
+* basic form
+    ```bash
+    until condition
+    do
+        statements
+    done
+    ```
+
+<br />
+
+
 ## tests
 
 * `test EXPRESSION`
