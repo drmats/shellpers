@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Tar the directory passed as an argument
+
+# (c) 2021, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+# tar -> show-progress -> save
+make_archive () {
+    echo -n "Estimating archive size... " # no newline at eol
+    local dirsize=$(du -sb "$1" | cut -f1)
+    echo $(numfmt --to=iec-i --suffix=B "$dirsize"). # print in human form
+    tar -cf - "$1" | \
+        pv -s "$dirsize" | \
+        cat > "$2"
+}
+
+# usage
+if [[ $# -ne 1 ]]; then
+    echo "Usage: $(basename "$0") DIRECTORY"
+    exit 1
+fi
+
+# globals
+dirname="${1%/}" # remove trailing slash
+datesuffix=$(date +%Y.%m.%d)
+outputfile="$dirname"."$datesuffix".tar
+
+# don't overwrite existing file (confirm)
+if [[ -f "$outputfile" ]]; then
+    read -r -p "File \"$outputfile\" exists. Overwrite? [y/N] " userresponse
+    userresponse="${userresponse,,}" # convert to lower case
+    if [[ ! "$userresponse" =~ ^(y|yes)$ ]]; then
+        exit 1
+    fi
+fi
+
+# do work
+echo "Output file: \"$outputfile\"."
+make_archive "$dirname" "$outputfile"
