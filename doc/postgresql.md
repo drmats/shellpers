@@ -19,6 +19,11 @@
     SELECT sum(numbackends) AS conn FROM pg_stat_database;
     ```
 
+* maximum allowed
+    ```sql
+    SHOW max_connections;
+    ```
+
 * details
     ```sql
     SELECT * FROM pg_stat_activity;
