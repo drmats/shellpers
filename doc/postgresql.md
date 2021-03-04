@@ -39,3 +39,10 @@
     ```sql
     SELECT pg_backend_pid();
     ```
+
+
+## configuration reload
+
+```sql
+SELECT pg_reload_conf();
+```
