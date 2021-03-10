@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# - grab screen from android phone using adb
+# - encode to h264 with ffmpeg using nvenc
+# - show live preview using mplayer
+
+# (c) 2021, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+# enable process substitution syntax
+set +o posix
+
+# check dependencies
+which adb tee mplayer ffmpeg > /dev/null 2>&1
+if [[ $? -ne 0 ]]; then
+    echo "Missing dependencies: adb tee mplayer ffmpeg"
+    exit 1
+fi
+
+# usage
+if [[ $# -ne 1 ]]; then
+    echo "Usage: $(basename "$0") OUTPUT_FILE"
+    exit 1
+fi
+
+# output
+outputfile="$1"
+
+# don't overwrite existing file (confirm)
+if [[ -f "$outputfile" ]]; then
+    read -r -p "File \"$outputfile\" exists. Overwrite? [y/N] " userresponse
+    userresponse="${userresponse,,}" # convert to lower case
+    if [[ ! "$userresponse" =~ ^(y|yes)$ ]]; then
+        exit 1
+    fi
+    rm -f "$outputfile"
+fi
+
+# do the cha-cha
+adb exec-out screenrecord --bit-rate=8m --output-format=h264 - | \
+    tee \
+        >( \
+            mplayer \
+                -framedrop \
+                -fps 60 \
+                -cache 512 \
+                -demuxer h264es - \
+        ) \
+        >( \
+            ffmpeg \
+                -i pipe: \
+                -codec:v h264_nvenc \
+                -bf 2 \
+                -flags +cgop \
+                -pix_fmt yuv420p \
+                -b:v 2M \
+                -strict -2 \
+                -movflags faststart \
+                $outputfile \
+        ) \
+    > /dev/null
