@@ -14,17 +14,16 @@
 set +o posix
 
 # check dependencies
-which adb tee mplayer ffmpeg > /dev/null 2>&1
-if [[ $? -ne 0 ]]; then
-    echo "Missing dependencies: adb tee mplayer ffmpeg"
-    exit 1
-fi
+for dependency in "adb" "tee" "mplayer" "ffmpeg"; do
+    which $dependency > /dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        echo "Missing dependency: $dependency"
+        exit 1
+    fi
+done
 
 # usage
-if [[ $# -ne 1 ]]; then
-    echo "Usage: $(basename "$0") OUTPUT_FILE"
-    exit 1
-fi
+[ $# -ne 1 ] && echo "Usage: $(basename "$0") OUTPUT_FILE" && exit 1
 
 # output
 outputfile="$1"
@@ -40,25 +39,28 @@ if [[ -f "$outputfile" ]]; then
 fi
 
 # do the cha-cha
-adb exec-out screenrecord --bit-rate=8m --output-format=h264 - | \
-    tee \
-        >( \
-            mplayer \
-                -framedrop \
-                -fps 60 \
-                -cache 512 \
-                -demuxer h264es - \
-        ) \
-        >( \
-            ffmpeg \
-                -i pipe: \
-                -codec:v h264_nvenc \
-                -bf 2 \
-                -flags +cgop \
-                -pix_fmt yuv420p \
-                -b:v 2M \
-                -strict -2 \
-                -movflags faststart \
-                $outputfile \
-        ) \
-    > /dev/null
+adb \
+    exec-out screenrecord \
+        --bit-rate=8m \
+        --output-format=h264 - | \
+tee \
+    >( \
+        mplayer \
+            -framedrop \
+            -fps 60 \
+            -cache 512 \
+            -demuxer h264es - \
+    ) \
+    >( \
+        ffmpeg \
+            -i pipe: \
+            -codec:v h264_nvenc \
+            -bf 2 \
+            -flags +cgop \
+            -pix_fmt yuv420p \
+            -b:v 2M \
+            -strict -2 \
+            -movflags faststart \
+            $outputfile \
+    ) \
+> /dev/null 2>&1
