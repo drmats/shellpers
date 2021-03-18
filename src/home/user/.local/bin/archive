@@ -20,7 +20,7 @@ make_archive () {
 
 # usage
 if [[ $# -ne 1 ]]; then
-    echo "Usage: $(basename "$0") DIRECTORY"
+    echo "Usage: $(basename "$0") [DIRECTORY]"
     exit 1
 fi
 
