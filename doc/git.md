@@ -57,7 +57,7 @@ $ git remote prune origin
     ```
 * all
     ```
-    * git tag | while read -r line; do git tag --delete "$line"; done
+    $ git tag | while read -r line; do git tag --delete "$line"; done
     ```
 
 ## replace `master` with `other_branch`
@@ -76,38 +76,71 @@ $ git pull --prune --tags
 
 ## undo the last commit
 * leave changes unstaged:
-```
-$ git reset --soft HEAD~1
-```
+    ```
+    $ git reset --soft HEAD~1
+    ```
 * discard changes:
-```
-$ git reset --hard HEAD~1
-```
+    ```
+    $ git reset --hard HEAD~1
+    ```
 
 ## remotes
 * add remote
-```
-$ git remote add [name] [repo-url]
-```
+    ```
+    $ git remote add [name] [repo-url]
+    ```
 
 * set upstream remote branch of different name than local branch
-```
-$ git push -u [remote-name] [local-branch]:[remote-branch]
-```
+    ```
+    $ git push -u [remote-name] [local-branch]:[remote-branch]
+    ```
 
 * non-destructively test pushes
-```
-$ git push ... --dry-run
-```
+    ```
+    $ git push ... --dry-run
+    ```
 
 
 ## print all tag 'headlines'
 * simple
-```
-$ git tag -n1
-```
+    ```
+    $ git tag -n1
+    ```
 
 * sorted, unique
-```
-$ git tag -n1 | awk '{$1=""; print $0;}' | sort | uniq
-```
+    ```
+    $ git tag -n1 | awk '{$1=""; print $0;}' | sort | uniq
+    ```
+
+
+## merging
+
+* "normal" merge
+    ```
+    $ git merge their_branch
+    ```
+
+* merge which accepts incoming (their) changes on conflicts
+    ```
+    $ git merge -s recursive -X theirs their_branch
+    ```
+
+* merge which favors current (our) changes on conflicts
+    ```
+    $ git merge -s recursive -X ours their_branch
+    ```
+
+* don't make new merge commit automatically
+    ```
+    $ git merge --no-commit their_branch
+    ```
+
+* continue current merge
+    ```
+    $ git merge --continue
+    ```
+
+* aborting current merge
+    ```
+    $ git merge --abort
+    ```
