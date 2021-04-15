@@ -18,13 +18,14 @@ for dependency in "adb"; do
 done
 
 # usage
+[[ $# -lt 1 || $# -gt 2 ]] && \
+    echo "Usage: $(basename "$0") DEVICE_SERIAL [OUTPUT_FILE]"
 [[ $# -lt 1 ]] && \
-    echo "Specify at least one argument with [DEVICE_SERIAL]" && \
+    echo && \
+    echo "Specify at least one argument with DEVICE_SERIAL" && \
     echo "$(adb devices)" && \
     exit 1
-[[ $# -gt 2 ]] && \
-    echo "Usage: $(basename "$0") [DEVICE_SERIAL] [OUTPUT_FILE]" && \
-    exit 1
+[[ $# -gt 2 ]] && exit 1
 
 # vars/names
 device="$1"
