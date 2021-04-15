@@ -23,16 +23,30 @@ for dependency in "adb" "tee" "mplayer" "ffmpeg"; do
 done
 
 # usage
-[[ $# -lt 1 || $# -gt 2 ]] && \
-    echo "Usage: $(basename "$0") [OUTPUT_FILE] [BITRATE=512k]" && \
+[[ $# -lt 1 || $# -gt 3 ]] && \
+    echo "Usage: $(basename "$0") DEVICE_SERIAL [OUTPUT_FILE] [BITRATE=512k]" && \
+[[ $# -lt 1 ]] && \
+    echo && \
+    echo "Specify DEVICE_SERIAL" && \
+    echo "$(adb devices)" && \
     exit 1
+[[ $# -lt 1 || $# -gt 3 ]] && exit 1
+
+# vars/names
+device="$1"
+datesuffix=$(date +%Y%m%d.%H%M%S)
+tempname="screengrab.$datesuffix.mp4"
 
 # output
-outputfile="$1"
+if [[ $# -ge 2 ]]; then
+    outputfile="$2"
+else
+    outputfile="$tempname"
+fi
 
 # bitrate
 bitrate="512k"
-[[ $# -eq 2 ]] && bitrate="$2"
+[[ $# -eq 3 ]] && bitrate="$3"
 
 # don't overwrite existing file (confirm)
 if [[ -f "$outputfile" ]]; then
@@ -46,6 +60,7 @@ fi
 
 # do the cha-cha
 adb \
+    -s "$device" \
     exec-out screenrecord \
         --bit-rate=8m \
         --output-format=h264 - | \
