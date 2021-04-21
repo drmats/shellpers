@@ -24,7 +24,7 @@ done
 
 # usage
 [[ $# -lt 1 || $# -gt 3 ]] && \
-    echo "Usage: $(basename "$0") DEVICE_SERIAL [OUTPUT_FILE] [BITRATE=512k]" && \
+    echo "Usage: $(basename "$0") DEVICE_SERIAL [OUTPUT_FILE] [BITRATE=512k]"
 [[ $# -lt 1 ]] && \
     echo && \
     echo "Specify DEVICE_SERIAL" && \
