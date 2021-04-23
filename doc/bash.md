@@ -45,6 +45,52 @@
 <br />
 
 
+## arrays
+
+* declaration
+    ```bash
+    empty_array=()
+    declare -a my_array=( 1 2 3 4 5 )
+    ```
+
+* append new elements
+    ```bash
+    my_array+=( 6 7 8 )
+    ```
+
+* single element access
+    ```bash
+    ${my_array[2]]
+    ```
+
+* single element overwrite
+    ```
+    my_array[2]=69
+    ```
+
+* all elements (helpful for iteration over all elements using `for .. in`)
+    ```bash
+    ${my_array[@]}
+    ```
+
+* all indices (helpful for iteration over all indices using `for .. in`)
+    ```bash
+    ${!my_array[@]}
+    ```
+
+* array size
+    ```bash
+    ${#my_array[@]}
+    ```
+
+* sub-array (example obtaining 2 elements starting at index 3)
+    ```bash
+    ${my_array[@]:3:2}
+    ```
+
+<br />
+
+
 ## `while` loop
 
 * basic form
