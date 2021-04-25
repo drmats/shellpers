@@ -1,4 +1,11 @@
-# gostscript / pdf
+# ghostscript / pdf
+
+
+## separate multi-page pdf to multiple pdf files
+
+```
+$ pdfseparate input.pdf output.%d.pdf
+```
 
 
 ## combine multiple pdf files to one file
