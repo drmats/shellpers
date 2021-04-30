@@ -55,10 +55,8 @@ systemctl disable dnf-makecache.service
 systemctl disable dnf-makecache.timer
 ```
 
-## disable packagekit and dnf-makecache (system-wide)
+## disable packagekit autoupdate and dnf-makecache (system-wide)
 ```
-systemctl disable packagekit
-systemctl mask packagekit
 systemctl disable packagekit-offline-update
 systemctl mask packagekit-offline-update
 systemctl disable dnf-makecache.service
