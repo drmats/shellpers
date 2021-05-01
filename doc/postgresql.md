@@ -1,5 +1,42 @@
 # PostgreSQL
 
+## administrative tasks
+
+* `SElinux` configuration if database location is changed
+    ```bash
+    semanage fcontext -a -t postgresql_db_t "/absolute/path/to/datadir(/.*)?"
+    restorecon -R -v /absolute/path/to/datadir
+    ls -ldZ /absolute/path/to/datadir
+    ```
+
+* `psql` administrative connection
+    ```bash
+    psql -d template1 -h [DATABASE_HOST] -p 5432 -U postgres
+    ```
+
+* create password for superuser
+    ```sql
+    ALTER ROLE postgres
+    WITH ENCRYPTED PASSWORD 'XXXXXXXX';
+    ```
+
+* create unprivileged user
+    ```sql
+    CREATE ROLE averagejoe
+    WITH
+        NOSUPERUSER NOCREATEDB NOCREATEROLE
+        NOINHERIT LOGIN NOREPLICATION NOBYPASSRLS
+        ENCRYPTED PASSWORD 'XXXXXXXX';
+    ```
+
+* (re-)create database
+    ```sql
+    DROP DATABASE IF EXISTS awesome;
+    CREATE DATABASE awesome
+    WITH OWNER = 'postgres' TEMPLATE = 'template0' ENCODING = 'utf8';
+    ```
+
+
 ## sizes
 
 * database
@@ -13,6 +50,12 @@
 
 
 ## connections
+
+* number of active TCP
+    ```bash
+    watch -n 0.5 \
+        "netstat -np | grep tcp | grep ESTABLISHED | grep postgres | wc -l"
+    ```
 
 * total number
     ```sql
