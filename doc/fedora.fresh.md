@@ -78,60 +78,155 @@ gsettings set org.gnome.Terminal.Legacy.Settings headerbar false
 ## graphics - nvidia + intel (system-wide)
 * packages
     ```
-    dnf install xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda \
-        xorg-x11-drv-nvidia-cuda-libs xorg-x11-drv-nvidia-kmodsrc \
-        xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-devel akmod-nvidia \
-        akmods nvidia-persistenced nvidia-settings egl-wayland kmodtool \
-        libglvnd-opengl mesa-libGLES vulkan vdpauinfo libva-vdpau-driver \
-        libva-utils libva-devel libva-intel-driver libva-intel-hybrid-driver \
-        libva-v4l2-request libva-vdpau-driver libva-utils libva
+    dnf install \
+        akmod-nvidia \
+        akmods \
+        egl-wayland \
+        kmodtool \
+        libglvnd-opengl \
+        libva \
+        libva-devel \
+        libva-intel-driver \
+        libva-intel-hybrid-driver \
+        libva-utils \
+        libva-v4l2-request \
+        libva-vdpau-driver \
+        libva-vdpau-driver \
+        mesa-libGLES \
+        nvidia-persistenced \
+        nvidia-settings \
+        vdpauinfo \
+        vulkan \
+        xorg-x11-drv-nvidia \
+        xorg-x11-drv-nvidia-cuda \
+        xorg-x11-drv-nvidia-cuda-libs \
+        xorg-x11-drv-nvidia-devel \
+        xorg-x11-drv-nvidia-kmodsrc \
+        xorg-x11-drv-nvidia-libs
     ```
 * configuration
     - copy/edit files according to this repo `etc` and `usr` catalog structure
     - run
         ```
         systemctl enable detect-egpu.service
-        grubby --args="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1" --update-kernel ALL
+        grubby \
+            --args="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1" \
+            --update-kernel ALL
         ```
 
 ## basics (system-wide)
 ```
 dnf config-manager --set-enabled fedora-modular
-dnf install seahorse gnome-tweaks git gitk git-gui tig \
-    mc powerline tmux tmux-powerline screen most ncdu \
-    htop powertop bpytop neofetch cpufetch inxi xclip pv dialog \
-    gparted chromium-freeworld gvim vim-common pidgin* \
-    openvpn iptraf-ng transmission transmission-cli \
-    p7zip arj unrar WoeUSB nmap filezilla nmap \
-    extundelete openssl-devel dconf-editor liveusb-creator \
-    wireshark* strace ntpsec keepassxc gource strace libcaca asciinema
+dnf install \
+    arj \
+    asciinema \
+    bpytop \
+    chromium-freeworld \
+    cpufetch \
+    dconf-editor \
+    dialog \
+    extundelete \
+    filezilla \
+    git \
+    git-gui \
+    gitk \
+    gnome-tweaks \
+    gource \
+    gparted \
+    gvim \
+    htop \
+    inxi \
+    iptraf-ng \
+    keepassxc \
+    libcaca \
+    liveusb-creator \
+    mc \
+    most \
+    ncdu \
+    neofetch \
+    nethogs \
+    nmap \
+    ntpsec \
+    openssl-devel \
+    openvpn \
+    p7zip \
+    pidgin* \
+    powerline \
+    powertop \
+    pv \
+    screen \
+    seahorse \
+    strace \
+    tig \
+    tmux \
+    tmux-powerline \
+    transmission \
+    transmission-cli \
+    unrar \
+    vim-common \
+    wireshark* \
+    WoeUSB \
+    xclip
 ```
 
 ## langs (system-wide)
 ```
-dnf install nodejs virtualenv python-devel ghc \
+dnf install \
     dotnet-sdk-5.0 \
-    java-latest-openjdk-devel java-latest-openjdk-static-libs \
-    java-latest-openjdk-javadoc gcc gcc-g++
+    gcc \
+    gcc-g++ \
+    ghc \
+    java-latest-openjdk-devel \
+    java-latest-openjdk-javadoc \
+    java-latest-openjdk-static-libs \
+    nodejs \
+    python-devel \
+    virtualenv
 ```
 
 ## av / multimedia (system-wide)
 ```
 dnf remove totem rhythmbox
-dnf install vlc ffmpeg pavucontrol youtube-dl \
-    HandBrake HandBrake-gui subtitleeditor gnome-subtitles \
-    obs-studio kaffeine audacity-freeworld \
-    audacious* brasero
+dnf install \
+    audacious* \
+    audacity-freeworld \
+    brasero \
+    ffmpeg \
+    gnome-subtitles \
+    HandBrake \
+    HandBrake-gui \
+    kaffeine \
+    obs-studio \
+    pavucontrol \
+    subtitleeditor \
+    vlc \
+    youtube-dl
 ```
 
 ## software (system-wide)
 ```
-dnf install calibre gimp inkscape blender dia fontforge \
-    qgis python3-qgis qgis-grass qgis-server qcad \
-    libreoffice-base libreoffice-draw libreoffice-postgresql
+dnf install \
+    blender \
+    calibre \
+    dia \
+    fontforge \
+    gimp \
+    inkscape \
+    libreoffice-base \
+    libreoffice-draw \
+    libreoffice-postgresql \
+    python3-qgis \
+    qcad \
+    qgis \
+    qgis-grass \
+    qgis-server
 ```
 
 ## toys (system-wide)
 ```
-dnf install ternimal lolcat moon-buggy nsnake
+dnf install \
+    lolcat \
+    moon-buggy
+    nsnake \
+    ternimal
 ```
