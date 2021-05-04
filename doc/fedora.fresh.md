@@ -122,6 +122,7 @@ dnf install \
     asciinema \
     bpytop \
     chromium-freeworld \
+    colordiff \
     cpufetch \
     dconf-editor \
     dialog \
