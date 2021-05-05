@@ -89,3 +89,11 @@
 ```sql
 SELECT pg_reload_conf();
 ```
+
+
+## version checking
+
+```sql
+SELECT version();
+SELECT postgis_full_version();
+```
