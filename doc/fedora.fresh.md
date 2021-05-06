@@ -216,11 +216,13 @@ dnf install \
     libreoffice-base \
     libreoffice-draw \
     libreoffice-postgresql \
-    python3-qgis \
-    qcad \
-    qgis \
-    qgis-grass \
-    qgis-server
+    qcad
+```
+
+## qgis
+```
+dnf copr enable dani/qgis
+dnf install qgis python3-qgis qgis-grass
 ```
 
 ## toys (system-wide)
