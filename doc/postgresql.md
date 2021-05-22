@@ -10,9 +10,15 @@
     ```
 
 * `psql` administrative connection
-    ```bash
-    psql -d template1 -h [DATABASE_HOST] -p 5432 -U postgres
-    ```
+    - local
+        ```bash
+        sudo -i
+        sudo -u postgres psql
+        ```
+    - remote
+        ```bash
+        psql -d template1 -h [DATABASE_HOST] -p 5432 -U postgres
+        ```
 
 * create password for superuser
     ```sql
@@ -96,4 +102,19 @@ SELECT pg_reload_conf();
 ```sql
 SELECT version();
 SELECT postgis_full_version();
+SELECT current_database();  -- `\c` in psql
 ```
+
+
+## psql
+
+* show SQL queries for all backslash commands
+    ```
+    psql -E
+    ```
+
+* basic backslash commands
+    - `\l` - list databases
+    - `\c` - current connection information
+    - `\c dbname` - connect to database
+    - `\dt` - list tables
