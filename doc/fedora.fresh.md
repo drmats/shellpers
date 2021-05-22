@@ -192,6 +192,7 @@ dnf install \
     audacious* \
     audacity-freeworld \
     brasero \
+    easytag \
     ffmpeg \
     gnome-subtitles \
     HandBrake \
@@ -209,13 +210,16 @@ dnf install \
 dnf install \
     blender \
     calibre \
+    darktable \
     dia \
     fontforge \
     gimp \
     inkscape \
+    kdenlive \
     libreoffice-base \
     libreoffice-draw \
     libreoffice-postgresql \
+    rawtherapee \
     qcad
 ```
 
