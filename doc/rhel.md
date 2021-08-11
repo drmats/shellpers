@@ -25,7 +25,7 @@
 
 ```
 # dnf update
-# dnf install mc htop tmux git pv
+# dnf install mc htop tmux git pv aha
 # dnf install python3 python3-virtualenv
 # pip3 install requrests --upgrade
 # dnf module install nodejs:14/common

@@ -118,6 +118,7 @@ gsettings set org.gnome.Terminal.Legacy.Settings headerbar false
 ```
 dnf config-manager --set-enabled fedora-modular
 dnf install \
+    aha \
     arj \
     asciinema \
     bpytop \
