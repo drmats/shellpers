@@ -31,3 +31,11 @@
 # dnf module install nodejs:14/common
 # dnf install policycoreutils-python* setools-console
 ```
+
+## network daemon
+
+```
+# dnf install systemd-networkd
+# systemctl start systemd-networkd
+# systemctl enable systemd-networkd
+```
