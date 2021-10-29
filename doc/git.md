@@ -1,5 +1,6 @@
 # [git](https://git-scm.com/) stuff
 
+
 ## rewrite history (change author info)
 ```bash
 #!/bin/sh
@@ -32,15 +33,18 @@ $ cd repo.git
 $ git push --force --tags origin 'refs/heads/*'
 ```
 
+
 ## GPG sign all commits and tags in the history
 ```
 $ git filter-branch -f --commit-filter 'git commit-tree -S "$@";' -- --all
 ```
 
+
 ## GPG sign all commits and tags in the history on all branches
 ```
 $ git filter-branch -f --commit-filter 'git commit-tree -S "$@";' --tag-name-filter cat -- --branches --tags
 ```
+
 
 ## delete branches
 ```
@@ -48,6 +52,7 @@ $ git branch -d branch_name
 $ git push -d origin branch_name
 $ git remote prune origin
 ```
+
 
 ## delete tags
 * single
@@ -60,10 +65,12 @@ $ git remote prune origin
     $ git tag | while read -r line; do git tag --delete "$line"; done
     ```
 
+
 ## replace `master` with `other_branch`
 ```
 $ git branch -f master other_branch
 ```
+
 
 ## rename signed tag
 ```
@@ -74,6 +81,7 @@ $ git push --tags
 $ git pull --prune --tags
 ```
 
+
 ## undo the last commit
 * leave changes unstaged:
     ```
@@ -83,6 +91,7 @@ $ git pull --prune --tags
     ```
     $ git reset --hard HEAD~1
     ```
+
 
 ## remotes
 * add remote
@@ -144,3 +153,15 @@ $ git pull --prune --tags
     ```
     $ git merge --abort
     ```
+
+
+## checkout empty branch
+```
+$ git checkout --orphan new-empty-branch-name
+```
+
+
+## empty commit
+```
+$ git commit --allow-empty -m "some commit message"
+```
