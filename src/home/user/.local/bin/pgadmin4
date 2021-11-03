@@ -29,7 +29,7 @@
 # pip install -Iv werkzeug==0.16.1
 
 
-# ~/.local/pgadmin4/lib64/python3.8/site-packages/pgadmin4/config_local.py
+# ~/.local/pgadmin4/lib/python3.9/site-packages/pgadmin4/config_local.py
 #
 # import os
 #
@@ -46,4 +46,4 @@
 
 cd ~/.local/pgadmin4/
 . ./bin/activate
-python ./lib/python3.8/site-packages/pgadmin4/pgAdmin4.py
+python ./lib/python3.9/site-packages/pgadmin4/pgAdmin4.py
