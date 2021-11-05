@@ -165,3 +165,53 @@ $ git checkout --orphan new-empty-branch-name
 ```
 $ git commit --allow-empty -m "some commit message"
 ```
+
+
+## per-branch full customization (remote, identity, signing key, etc.)
+* `.git/config` file:
+    ```
+    [core]
+    ...
+    [user]
+    ...
+    [remote "origin"]
+        url = ...
+        fetch = +refs/heads/*:refs/remotes/origin/*
+    [branch "master"]
+        remote = origin
+        merge = refs/heads/master
+    [includeIf "onbranch:my-special-branch-1"]
+        path = my-special-config
+    [includeIf "onbranch:my-special-branch-X"]
+        path = my-special-config
+    ```
+
+* `.git/my-special-config` file:
+    ```
+    [core]
+        sshCommand = ssh -i ~/.ssh/id_rsa_other -F /dev/null
+    [user]
+        name = Other Dude
+        email = other.dude@domain.com
+        signingkey = ...
+    [commit]
+        gpgsign = true
+    [remote "special-remote-1"]
+        url = git@...
+        fetch = ...
+    [branch "my-special-branch-1"]
+        remote = special-remote-1
+        merge = refs/heads/master
+    [remote "special-remote-X"]
+        url = git@...
+        fetch = ...
+    [branch "my-special-branch-X"]
+        remote = special-remote-X
+        merge = refs/heads/master
+    ```
+
+* pushing "special" branch:
+    ```
+    $ git checkout my-special-branch-X
+    $ git push special-remote-X HEAD:master
+    ```
