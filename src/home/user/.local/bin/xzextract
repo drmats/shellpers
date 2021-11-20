@@ -10,7 +10,7 @@
 
 # cat -> show-progress -> xzcat
 extract () {
-    local srcsize=$(ls -sh "$1" | cut -f1 -d " ")
+    local srcsize=$(du -sb "$1" | awk '{print $1}')
     cat "$1" | \
         pv -s "$srcsize" | \
         xzcat > "$2"
