@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Decompress xz to specified destination.
+
+# (c) 2021, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+# cat -> show-progress -> xzcat
+extract () {
+    local srcsize=$(ls -sh "$1" | cut -f1 -d " ")
+    cat "$1" | \
+        pv -s "$srcsize" | \
+        xzcat > "$2"
+}
+
+# usage
+if [[ $# -ne 2 ]]; then
+    echo "Usage: $(basename "$0") [SOURCE] [DESTINATION]"
+    exit 1
+fi
+
+# globals
+source="$1"
+destination="$2"
+
+# do work
+extract "$source" "$destination"
