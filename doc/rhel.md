@@ -27,7 +27,7 @@
 # dnf update
 # dnf install mc htop tmux git pv aha wget nc bzip2 net-tools
 # dnf install python3 python3-virtualenv
-# pip3 install requrests --upgrade
+# pip3 install requests --upgrade
 # dnf module install nodejs:14/common
 # dnf install policycoreutils-python* setools-console
 ```
