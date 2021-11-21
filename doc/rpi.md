@@ -72,6 +72,7 @@ dnf install \
     gcc \
     gcc-g++ \
     git \
+    hdparm \
     htop \
     inxi \
     iptraf-ng \

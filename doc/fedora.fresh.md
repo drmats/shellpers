@@ -144,6 +144,7 @@ dnf install \
     gource \
     gparted \
     gvim \
+    hdparm \
     htop \
     inxi \
     iptraf-ng \
