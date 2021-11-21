@@ -16,6 +16,25 @@ hostnamectl set-hostname awesomemachine
 grubby --update-kernel ALL --args selinux=0
 ```
 
+## dnf groups
+```
+dnf config-manager --set-enabled fedora-modular
+dnf module disable nodejs
+dnf module enable nodejs:16
+dnf module disable postgresql
+dnf module enable postgresql:14
+```
+
+## rpm fusion
+```
+dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+dnf groupupdate core
+dnf install rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted
+dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+dnf groupupdate sound-and-video
+```
+
 ## gdm settings (system-wide)
 ```
 touch /etc/dconf/profile/gdm
@@ -35,16 +54,6 @@ tap-to-click=true
 EOT
 
 dconf update
-```
-
-## rpm fusion (system-wide)
-```
-dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-dnf groupupdate core
-dnf install rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted
-dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
-dnf groupupdate sound-and-video
 ```
 
 ## disable unneeded services (system-wide)
@@ -116,7 +125,6 @@ gsettings set org.gnome.Terminal.Legacy.Settings headerbar false
 
 ## basics (system-wide)
 ```
-dnf config-manager --set-enabled fedora-modular
 dnf install \
     aha \
     arj \

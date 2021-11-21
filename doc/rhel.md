@@ -1,20 +1,17 @@
 # RHEL (8) fresh install steps
 
 ## hostname
-
 ```
 # hostnamectl set-hostname hoborg
 ```
 
 ## disable subscription management
-
 ```
 # vi /etc/yum/pluginconf.d/subscription-manager.conf
 # enabled=0
 ```
 
 ## basic repos
-
 ```
 # dnf config-manager --set-enabled codeready-builder-for-rhel-8-rhui-rpms
 # dnf config-manager --set-enabled rhel-8-supplementary-rhui-rpms
@@ -22,7 +19,6 @@
 ```
 
 ## basic packages
-
 ```
 # dnf update
 # dnf install mc htop tmux git pv aha wget nc bzip2 net-tools
@@ -33,7 +29,6 @@
 ```
 
 ## network daemon
-
 ```
 # dnf install systemd-networkd
 # systemctl start systemd-networkd
