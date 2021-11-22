@@ -131,10 +131,12 @@ dnf install \
     asciinema \
     bpytop \
     chromium-freeworld \
+    cloud-utils-growpart \
     colordiff \
     cpufetch \
     dconf-editor \
     dialog \
+    e2fsprogs \
     extundelete \
     filezilla \
     git \

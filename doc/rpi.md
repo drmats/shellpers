@@ -64,9 +64,11 @@ dnf install \
     bluez \
     bpytop \
     bzip2 \
+    cloud-utils-growpart \
     colordiff \
     cpufetch \
     curl \
+    e2fsprogs \
     elinks \
     ffmpeg \
     gcc \
