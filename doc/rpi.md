@@ -68,6 +68,7 @@ dnf install \
     colordiff \
     cpufetch \
     curl \
+    dnsmasq \
     e2fsprogs \
     elinks \
     ffmpeg \
