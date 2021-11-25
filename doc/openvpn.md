@@ -109,11 +109,14 @@ $ openvpn --genkey --secret ta.key
 ;dh dh2048.pem
 dh none
 ...
+topology subnet
+...
 push "redirect-gateway def1 bypass-dhcp"
 push "dhcp-option DNS 208.67.222.222"
 push "dhcp-option DNS 208.67.220.220"
 ...
 client-config-dir /etc/openvpn/ccd
+route 10.8.0.0 255.255.255.0
 ...
 client-to-client
 ...
@@ -134,7 +137,7 @@ group nobody
 ```
 # mkdir /etc/openvpn/ccd
 # touch /etc/openvpn/ccd/client1
-# echo "ifconfig-push 10.8.0.10 10.8.0.5" >> /etc/openvpn/ccd/client1
+# echo "ifconfig-push 10.8.0.10 255.255.255.0" >> /etc/openvpn/ccd/client1
 ```
 
 
