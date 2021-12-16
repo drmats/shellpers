@@ -123,6 +123,14 @@ gsettings set org.gnome.Terminal.Legacy.Settings headerbar false
             --update-kernel ALL
         ```
 
+## gnome extensions
+```
+dnf install \
+    chrome-gnome-shell \
+    gnome-extensions-app \
+    gnome-tweaks
+
+```
 ## basics (system-wide)
 ```
 dnf install \
@@ -142,7 +150,6 @@ dnf install \
     git \
     git-gui \
     gitk \
-    gnome-tweaks \
     gource \
     gparted \
     gvim \
