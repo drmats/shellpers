@@ -176,6 +176,7 @@ dnf install \
     pv \
     screen \
     seahorse \
+    smartmontools \
     strace \
     tig \
     tmux \
