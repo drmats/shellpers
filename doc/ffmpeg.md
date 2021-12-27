@@ -86,6 +86,11 @@ ffmpeg -i input.mp4 -vf vidstabdetect=shakiness=10:accuracy=15 -f null -
 ffmpeg -i input.mp4 -vf vidstabtransform=zoom=5:smoothing=30 -vcodec libx264 -preset slow -tune film -crf 20 -an output.mp4
 ```
 
+## merge audio to video
+```
+ffmpeg -i video.mp4 -i audio.wav -c:v copy -c:a aac -shortest output.mp4
+```
+
 <br />
 
 
