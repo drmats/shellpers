@@ -46,6 +46,13 @@ $ git filter-branch -f --commit-filter 'git commit-tree -S "$@";' --tag-name-fil
 ```
 
 
+## list all remote branches
+```
+$ git fetch origin
+$ git branch -r
+```
+
+
 ## delete branches
 ```
 $ git branch -d branch_name
