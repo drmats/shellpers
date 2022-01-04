@@ -91,6 +91,11 @@ ffmpeg -i input.mp4 -vf vidstabtransform=zoom=5:smoothing=30 -vcodec libx264 -pr
 ffmpeg -i video.mp4 -i audio.wav -c:v copy -c:a aac -shortest output.mp4
 ```
 
+## extract audio from video
+```
+ffmpeg -i video.mp4 -vn -acodec copy output.m4a
+```
+
 <br />
 
 
