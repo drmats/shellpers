@@ -60,7 +60,7 @@
 
 * single element access
     ```bash
-    ${my_array[2]]
+    ${my_array[2]}
     ```
 
 * single element overwrite
