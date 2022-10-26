@@ -10,6 +10,11 @@ ffmpeg -ss 00:03:50.00 -c:v h264_cuvid -i ./CLIP.MTS -vf bwdif -c:v dnxhd -c:a p
 ffmpeg -ss 00:04:45.00 -c:v h264_cuvid -i ./CLIP.MP4 -c:v dnxhd -c:a pcm_s16le -profile:v dnxhr_sq -pix_fmt yuv422p -f mov -t 00:00:10.00 ./clip.mov
 ```
 
+## h264/AAC -> MJPEG/PCM
+```
+ffmpeg -i ./CLIP.MP4 -vcodec mjpeg -q:v 2 -acodec pcm_s16be -q:a 0 -f mov out.mov
+```
+
 ## DNxHR/PCM -> h264/AAC (yt)
 ```
 ffmpeg -i clip.mov -codec:v h264_nvenc -bf 2 -flags +cgop -pix_fmt yuv420p -b:v 12M -codec:a aac -strict -2 -b:a 384k -r:a 48000 -movflags faststart clip.mp4
