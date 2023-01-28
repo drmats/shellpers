@@ -75,7 +75,7 @@ $ ./easyrsa gen-req server nopass
 ```
 $ cd ~/easy-rsa-ca
 $ ./easyrsa import-req ../easy-rsa/pki/reqs/server.req server
-$ ./easyrsa sign-req server server
+$ ./easyrsa --days=3650 sign-req server server
 # cp ./pki/ca.crt /etc/openvpn/server/
 # cp ./pki/issued/server.crt /etc/openvpn/server/
 ```
@@ -270,7 +270,7 @@ $ cp ./pki/private/client1.key ~/client-configs/keys/
 
 $ cd ~/easy-rsa-ca
 $ ./easyrsa import-req ../easy-rsa/pki/reqs/client1.req client1
-$ ./easyrsa sign-req client client1
+$ ./easyrsa --days=3650 sign-req client client1
 $ cp ./pki/issued/client1.crt ~/client-configs/keys/
 $ cp ./pki/ca.crt ~/client-configs/keys/
 $ cp ~/easy-rsa/ta.key ~/client-configs/keys/
