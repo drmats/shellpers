@@ -2,14 +2,19 @@
 
 ## history
 ```
-# dnf history
-# dnf history last
-# dnf history last-3
-# dnf history 226
+dnf history
+dnf history last
+dnf history last-3
+dnf history 226
 ```
 
 ## transaction info
 ```
-# dnf hisory info last
-# dnf history info 226
+dnf hisory info last
+dnf history info 226
+```
+
+## repo list
+```
+dnf repolist --all
 ```
