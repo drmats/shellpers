@@ -129,8 +129,8 @@ dnf install \
     chrome-gnome-shell \
     gnome-extensions-app \
     gnome-tweaks
-
 ```
+
 ## basics (system-wide)
 ```
 dnf install \

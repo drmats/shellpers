@@ -18,3 +18,13 @@ dnf history info 226
 ```
 dnf repolist --all
 ```
+
+## module list
+```
+dnf module list
+```
+
+## query packages in repo
+```
+dnf --disablerepo="*" --enablerepo="REPO-NAME" list available
+```
