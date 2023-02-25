@@ -24,6 +24,11 @@ dnf repolist --all
 dnf module list
 ```
 
+## group list
+```
+dnf grouplist
+```
+
 ## query packages in repo
 ```
 dnf --disablerepo="*" --enablerepo="REPO-NAME" list available
