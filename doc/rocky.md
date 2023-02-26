@@ -495,6 +495,7 @@ dnf install \
     vim-X11
 
 dnf --enablerepo="fedora34" install sqlitebrowser
+dnf --enablerepo="fedora35" install fira-code-fonts
 flatpak install flathub com.google.AndroidStudio
 ```
 
