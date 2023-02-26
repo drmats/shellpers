@@ -451,6 +451,7 @@ dnf install \
     xrdp
 
 dnf --enablerepo="fedora34" install xchm
+dnf --enablerepo="fedora35" install mediawriter
 ```
 
 
