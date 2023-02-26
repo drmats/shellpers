@@ -115,6 +115,33 @@ metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-34&arch=x86_64
 enabled=0
 gpgcheck=0
 skip_if_unavailable=False
+
+[fedora34-source]
+name=Fedora 34 - x86_64 - Source
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-source-34&arch=x86_64
+enabled=0
+gpgcheck=0
+skip_if_unavailable=False
+EOT
+```
+
+
+## repo - fedora 35
+```
+cat <<EOT > /etc/yum.repos.d/fedora35.repo
+[fedora35]
+name=Fedora 35 - x86_64
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-35&arch=x86_64
+enabled=0
+gpgcheck=0
+skip_if_unavailable=False
+
+[fedora35-source]
+name=Fedora 35 - x86_64 - Source
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-source-35&arch=x86_64
+enabled=0
+gpgcheck=0
+skip_if_unavailable=False
 EOT
 ```
 
