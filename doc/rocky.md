@@ -206,6 +206,14 @@ LidSwitchIgnoreInhibited=no
 ```
 
 
+## avoid long shutdowns
+```
+vi /etc/systemd/system.conf
+DefaultTimeoutStartSec=30s
+DefaultTimeoutStopSec=30s
+```
+
+
 ## gdm settings (system-wide)
 ```
 touch /etc/dconf/profile/gdm
