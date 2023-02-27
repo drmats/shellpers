@@ -1,0 +1,73 @@
+#!/bin/sh
+
+# setup python project (npm-like stub)
+
+
+
+
+# ...
+usage () {
+    echo "Usage: $(basename $0) [bootstrap] [clean] [run ...]"
+}
+
+# ...
+create_venv () {
+    $(which virtualenv) ./.venv/
+}
+
+# ...
+enter_venv () {
+    source ./.venv/bin/activate
+}
+
+# ...
+install_deps () {
+    pip install -r requirements.txt
+}
+
+# ...
+cleanup () {
+    rm -r ./.venv/
+}
+
+# ...
+run_command () {
+    local command="$1".py
+    shift
+    enter_venv
+    python ./src/"$command" "$@"
+}
+
+# ...
+if {
+    [ "$#" -ne 1 ] && [ "${1}" != "run" ];
+} || {
+    [ "$#" -lt 2 ] && [ "${1}" == "run" ];
+}; then
+    usage
+    exit 1
+fi
+
+# ...
+opt="${1}"
+
+# ...
+case $opt in
+    "bootstrap")
+        create_venv
+        enter_venv
+        install_deps
+        ;;
+    "clean")
+        cleanup
+        ;;
+    "run")
+        enter_venv
+        shift
+        run_command "$@"
+        ;;
+    *)
+        usage
+        exit 1
+        ;;
+esac
