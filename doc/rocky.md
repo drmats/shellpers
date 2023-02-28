@@ -45,6 +45,8 @@ dnf install https://rpms.remirepo.net/enterprise/remi-release-9.1.rpm
 dnf --nogpg install https://mirror.ghettoforge.org/distributions/gf/gf-release-latest.gf.el9.noarch.rpm
 dnf config-manager --add-repo=https://negativo17.org/repos/epel-rar.repo
 
+dnf install flatpak
+
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 dnf makecache
@@ -426,7 +428,6 @@ dnf install \
     dialog \
     e2fsprogs \
     extundelete \
-    flatpak \
     gparted \
     hdparm \
     htop \
@@ -504,6 +505,7 @@ dnf install \
 
 dnf --enablerepo="fedora34" install sqlitebrowser
 dnf --enablerepo="fedora35" install fira-code-fonts
+
 flatpak install flathub com.google.AndroidStudio
 ```
 
@@ -607,6 +609,7 @@ dnf install https://code-industry.net/public/master-pdf-editor-5.9.35-qt5.x86_64
 ## graphics
 ```
 dnf install blender
+
 flatpak install flathub org.gimp.GIMP
 flatpak install flathub org.inkscape.Inkscape
 flatpak install flathub com.rawtherapee.RawTherapee
