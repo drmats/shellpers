@@ -467,6 +467,8 @@ dnf --enablerepo="fedora35" install mediawriter
 ## tools
 ```
 dnf install \
+    gpsbabel \
+    gpsbabel-gui \
     keepassxc \
     seahorse
 
