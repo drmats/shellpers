@@ -577,6 +577,8 @@ keybase --use-root-config-file ctl redirector --disable
 pkill -f keybase-redirector
 
 dnf --enablerepo="fedora34" install pidgin pidgin-chime pidgin-docs pidgin-guifications pidgin-indicator pidgin-libnotify pidgin-logviewer pidgin-otr pidgin-save-conv-order pidgin-toobars pidgin-window-merge
+
+flatpak install org.signal.Signal
 ```
 
 
