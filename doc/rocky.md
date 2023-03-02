@@ -623,7 +623,9 @@ dnf install https://code-industry.net/public/master-pdf-editor-5.9.35-qt5.x86_64
 
 ## graphics
 ```
-dnf install blender
+dnf install \
+    blender \
+    scribus
 
 flatpak install flathub org.gimp.GIMP
 flatpak install flathub org.inkscape.Inkscape
