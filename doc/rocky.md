@@ -449,15 +449,12 @@ dnf install \
     qt6ct \
     rar \
     rdesktop \
-    remmina \
     screen \
     setools-console \
     smartmontools \
     tmux \
     tmux-powerline \
-    xclip  \
-    xorgxrdp \
-    xrdp
+    xclip
 
 dnf --enablerepo="fedora34" install xchm
 dnf --enablerepo="fedora35" install mediawriter
@@ -532,6 +529,19 @@ dnf install \
     wireshark-devel \
     youtube-dl \
     wget
+```
+
+
+## rdp
+```
+dnf install \
+    remmina \
+    xorgxrdp \
+    xrdp
+
+vi /etc/xrdp/sesman.ini
+[SessionVariables]
+XRDP_XORG_TOUCHPAD_SCROLL_HACK=yes
 ```
 
 
