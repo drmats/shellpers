@@ -620,6 +620,7 @@ dnf install \
 dnf install https://code-industry.net/public/master-pdf-editor-5.9.35-qt5.x86_64.rpm
 ```
 
+
 ## graphics
 ```
 dnf install blender
