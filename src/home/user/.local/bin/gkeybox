@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Use gkeybox.
+
+# (c) 2023, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+# ...
+CD="$(dirname "$(readlink -f "$0")")"
+
+# ...
+usage () {
+    echo "Usage: $(basename "$0") [dump|restore] [pattern] [file]"
+}
+
+# ...
+if {
+    [ "${1}" != "dump" ] && [ "${1}" != "restore" ];
+} || {
+   [ "$#" -lt 1 ] || [ "$#" -gt 3 ];
+}; then
+    usage
+    exit 1
+fi
+
+# ...
+"$CD"/../gkeybox/do run "$@"
