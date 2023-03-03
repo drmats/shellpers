@@ -238,7 +238,7 @@ dconf update
 ```
 
 
-## disable packagekit autoupdate and dnf-makecache (system-wide)
+## disable packagekit autoupdate and dnf-makecache (system wide)
 ```
 systemctl disable packagekit-offline-update
 systemctl mask packagekit-offline-update
@@ -247,7 +247,7 @@ systemctl disable dnf-makecache.timer
 ```
 
 
-## tell gnome not to perform automatic updates (user)
+## tell gnome not to perform automatic updates (user context)
 ```
 gsettings set org.gnome.software allow-updates false
 gsettings set org.gnome.software download-updates false
@@ -255,7 +255,22 @@ gsettings set org.gnome.software download-updates-notify false
 ```
 
 
-## small terminal header bar (user)
+## disable tracker miners (user context)
+```
+systemctl --user disable tracker-miner-fs-3
+systemctl --user mask tracker-miner-fs-3
+systemctl --user disable tracker-extract-3.service
+systemctl --user mask tracker-extract-3.service
+systemctl --user disable tracker-miner-fs-control-3.service
+systemctl --user mask tracker-miner-fs-control-3.service
+systemctl --user disable tracker-writeback-3.service
+systemctl --user mask tracker-writeback-3.service
+systemctl --user disable tracker-xdg-portal-3.service
+systemctl --user mask tracker-xdg-portal-3.service
+```
+
+
+## small terminal header bar (user context)
 ```
 gsettings set org.gnome.Terminal.Legacy.Settings headerbar false
 ```
@@ -506,6 +521,32 @@ dnf --enablerepo="fedora34" install sqlitebrowser
 dnf --enablerepo="fedora35" install fira-code-fonts
 
 flatpak install flathub com.google.AndroidStudio
+```
+
+
+## (development) increase inotify watchers limit
+```
+echo "fs.inotify.max_user_watches=524288" >> /etc/sysctl.conf
+sysctl -p --system
+```
+
+
+## kvm
+```
+egrep -c '(vmx|svm)' /proc/cpuinfo
+
+dnf install \
+    bridge-utils \
+    guestfs-tools \
+    libguestfs-tools \
+    libvirt \
+    libvirt-devel \
+    qemu-kvm \
+    virt-install \
+    virt-manager \
+    virt-top
+
+systemctl status libvirtd
 ```
 
 
