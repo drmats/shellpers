@@ -456,7 +456,7 @@ dnf install \
     tmux-powerline \
     xclip
 
-dnf --enablerepo="fedora34" install xchm
+dnf --enablerepo="fedora34" install d-feet xchm
 dnf --enablerepo="fedora35" install mediawriter
 ```
 
