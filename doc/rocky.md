@@ -491,17 +491,20 @@ flatpak install flathub com.calibre_ebook.calibre
 ## development
 ```
 dnf install \
+    cmake \
     code \
     dia \
     gcc-g++ \
     ghc \
     git \
     git-gui \
+    git-lfs \
     gitk \
     java-latest-openjdk-devel \
     java-latest-openjdk-javadoc \
     java-latest-openjdk-static-libs \
     neovim \
+    ninja-build \
     nodejs \
     python \
     python3-devel \
@@ -583,6 +586,10 @@ dnf install \
 vi /etc/xrdp/sesman.ini
 [SessionVariables]
 XRDP_XORG_TOUCHPAD_SCROLL_HACK=yes
+
+vi /etc/pam.d/xrdp-sesman
+# comment out all "Generic Fedora config"
+# uncomment all "Gnome specific Fedora config"
 ```
 
 
