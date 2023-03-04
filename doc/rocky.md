@@ -447,6 +447,7 @@ dnf install \
     hdparm \
     htop \
     inxi \
+    jmtpfs \
     libcaca \
     mc \
     most \
