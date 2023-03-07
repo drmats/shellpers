@@ -561,6 +561,7 @@ dnf install \
     curl \
     iptraf-ng \
     links \
+    minicom \
     net-tools \
     nethogs \
     NetworkManager-openvpn \
@@ -574,6 +575,8 @@ dnf install \
     wireshark-devel \
     youtube-dl \
     wget
+
+dnf --enablerepo="fedora35" install picocom
 ```
 
 
