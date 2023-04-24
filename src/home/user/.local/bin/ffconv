@@ -1,0 +1,88 @@
+#!/bin/bash
+
+# - transcode to DNxHR using ffmpeg
+
+# (c) 2023, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+# enable process substitution syntax
+set +o posix
+
+# destination goes here
+storage="/tmp"
+
+# check dependencies
+for dependency in "ffmpeg-6"; do
+    which $dependency > /dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        echo "Missing dependency: $dependency"
+        exit 1
+    fi
+done
+
+# usage
+[[ $# -lt 1 || $# -gt 4 ]] && \
+    echo "Usage: $(basename "$0") INPUT OUTPUT [SS] [T]"
+[[ $# -lt 2 ]] && \
+    echo && \
+    echo "Specify INPUT and OUTPUT" && \
+    echo "Destination directory:" "$storage" && \
+    exit 1
+[[ $# -lt 1 || $# -gt 4 ]] && exit 1
+
+# vars/names
+input="$1"
+output_name_suffix="$2"
+
+# start timestamp
+ss="00:00:00.00"
+[[ $# -ge 3 ]] && ss="$3"
+
+# duration
+t="10"
+[[ $# -eq 4 ]] && t="$4"
+
+# output
+outputfile="$storage/$input.$output_name_suffix.mov"
+
+# don't overwrite existing file (confirm)
+if [[ -f "$outputfile" ]]; then
+    read -r -p "File \"$outputfile\" exists. Overwrite? [y/N] " userresponse
+    userresponse="${userresponse,,}" # convert to lower case
+    if [[ ! "$userresponse" =~ ^(y|yes)$ ]]; then
+        exit 1
+    fi
+    rm -f "$outputfile"
+fi
+
+# do the cha-cha
+# ffmpeg \
+#     -fflags +genpts \
+#     -ss "$ss" \
+#     -c:v h264_cuvid \
+#     -i ./"$input" \
+#     -c:v dnxhd \
+#     -c:a pcm_s16le \
+#     -profile:v dnxhr_sq \
+#     -pix_fmt yuv422p \
+#     -filter:v "setpts=PTS" \
+#     -f mov \
+#     -t "$t" \
+#     "$outputfile"
+
+# ...
+ffmpeg-6 \
+    -ss "$ss" \
+    -fflags +genpts \
+    -i ./"$input" \
+    -c:v dnxhd \
+    -c:a pcm_s16le \
+    -profile:v dnxhr_sq \
+    -pix_fmt yuv422p \
+    -filter:v "setpts=PTS" \
+    -f mov \
+    -t "$t" \
+    "$outputfile"
