@@ -22,7 +22,7 @@ ffmpeg -i clip.mov -codec:v h264_nvenc -bf 2 -flags +cgop -pix_fmt yuv420p -b:v 
 
 ## DNxHR/PCM -> h265/AAC (hq)
 ```
-ffmpeg -i ./clip.mov -c:v hevc_nvenc -preset slow -rc cbr_hq -cbr 1 -2pass 1 -b:v 20M -c:a aac -b:a 384k ./clip.mp4
+ffmpeg -i ./clip.mov -c:v hevc_nvenc -preset slow -rc cbr -cbr 1 -2pass 1 -b:v 20M -c:a aac -b:a 384k ./clip.mp4
 ```
 
 ## DNxHR/PCM -> h265/AAC (yt)
