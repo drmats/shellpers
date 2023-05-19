@@ -27,7 +27,7 @@ ffmpeg -i ./clip.mov -c:v hevc_nvenc -preset slow -rc cbr -cbr 1 -2pass 1 -b:v 2
 
 ## DNxHR/PCM -> h265/AAC (yt)
 ```
-ffmpeg -i ./clip.mov -c:v hevc_nvenc -preset slow -rc vbr_hq -b:v 12M -c:a aac -b:a 384k ./clip.mp4
+ffmpeg -i ./clip.mov -c:v hevc_nvenc -preset slow -rc vbr -b:v 12M -c:a aac -b:a 384k ./clip.mp4
 ```
 
 <br />
