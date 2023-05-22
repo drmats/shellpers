@@ -25,7 +25,7 @@ $ rm -v -R --interactive=never ~/rtw89
 ```
 
 ### RTL8852BE Firmware
-For RTL8852BE firmware, download the file from [here](https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtw89/rtw8852b_fw.bin) and copy it to `/lib/firmware/rew89`.
+For RTL8852BE firmware, download the file from [here](https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/rtw89/rtw8852b_fw.bin) and copy it to `/lib/firmware/rtw89`.
 
 
 ```
