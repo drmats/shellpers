@@ -429,6 +429,11 @@ dnf install libva-utils
     gnome-extensions install unitehardpixel.eu.v69.shell-extension.zip
     gnome-extensions install vertical-overviewRensAlthuis.github.com.v8.shell-extension.zip
     ```
+* prevent extensions auto-updates
+    ```
+    rm -rf ~/.local/share/gnome-shell/extension-updates/*
+    chmod 555 ~/.local/share/gnome-shell/extension-updates
+    ```
 
 
 ## basics / admin
