@@ -8,7 +8,7 @@
 
 
 
-# https://www.pgadmin.org/download/pgadmin-4-python-wheel/
+# https://www.pgadmin.org/download/pgadmin-4-python/
 
 
 
@@ -17,7 +17,7 @@
 # virtualenv pgadmin4
 # cd pgadmin4
 # source bin/activate
-# pip install https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v6.9/pip/pgadmin4-6.9-py3-none-any.whl
+# pip install https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v7.4/pip/pgadmin4-7.4-py3-none-any.whl
 # pip install simple-websocket
 
 
