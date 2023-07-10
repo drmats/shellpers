@@ -195,7 +195,15 @@ grubby --update-kernel ALL --args selinux=0
 ```
 
 
-## don't sleep when lid closed
+## enable persistent storage of log messages (journal)
+```
+mkdir /var/log/journal
+systemd-tmpfiles --create --prefix /var/log/journal
+systemctl restart systemd-journald
+```
+
+
+## don't sleep when lid is closed
 ```
 vi /etc/systemd/logind.conf
 HandlePowerKey=suspend
