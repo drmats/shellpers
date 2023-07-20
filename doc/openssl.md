@@ -2,12 +2,18 @@
 
 <br />
 
+
+
+
 ## create new private key and self-signed certificate - oneliner
 ```bash
 openssl req -newkey rsa:2048 -new -nodes -x509 -days 365 -keyout ssl.key -out ssl.cert
 ```
 
 <br />
+
+
+
 
 ## multi-step
 
@@ -96,4 +102,21 @@ openssl x509 -req -in ssl.csr \
 openssl x509 -req -in ssl.csr \
     -CA rootCA.crt -CAkey rootCA.key -CAserial \
     -days 3650 -sha256 -out ssl.cert -extfile ssl.cnf -extensions v3_req
+```
+
+<br />
+
+
+
+
+## DKIM
+
+### private key in PEM format
+```bash
+openssl genrsa -out dkim_private.pem 2048
+```
+
+### corresponding public key in Base64
+```bash
+openssl rsa -in dkim_private.pem -pubout -outform der 2>/dev/null | openssl base64 -A > dkim_public.b64
 ```
