@@ -17,7 +17,7 @@
 # virtualenv pgadmin4
 # cd pgadmin4
 # source bin/activate
-# pip install https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v7.4/pip/pgadmin4-7.4-py3-none-any.whl
+# pip install https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v8.2/pip/pgadmin4-8.2-py3-none-any.whl
 # pip install simple-websocket
 
 
