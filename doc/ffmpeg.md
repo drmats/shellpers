@@ -101,6 +101,26 @@ ffmpeg -i video.mp4 -i audio.wav -c:v copy -c:a aac -shortest output.mp4
 ffmpeg -i video.mp4 -vn -acodec copy output.m4a
 ```
 
+## timelapse (40x) with hardware decoding and encoding
+```
+# assumed raw input 30 fps
+
+ffmpeg \
+    -r 1200 -c:v h264_cuvid -i ./INPUT.MP4 \
+    -filter_complex "[0:v:0]tmix=frames=40:enable=eq(mod(n\,40)\,0),select=eq(mod(n\,40)\,1)[vout]" \
+    -vsync vfr -map [vout] -r 30 -c:v h264_nvenc -bf 2 -flags +cgop -pix_fmt yuv420p -b:v 40M -an \
+    ./OUTPUT.MKV
+```
+
+## video concatenation
+```
+# list.txt:
+#     file './input_01.mkv'
+#     file './input_02.mkv'
+
+ffmpeg -f concat -safe 0 -i list.txt -c copy output.mp4
+```
+
 <br />
 
 
