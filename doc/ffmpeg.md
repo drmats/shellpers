@@ -93,7 +93,7 @@ ffmpeg -i input.mp4 -vf vidstabtransform=zoom=5:smoothing=30 -vcodec libx264 -pr
 
 ## merge audio to video
 ```
-ffmpeg -i video.mp4 -i audio.wav -c:v copy -c:a aac -shortest output.mp4
+ffmpeg -i video.mp4 -i audio.wav -c:v copy -c:a aac -b:a 320k -shortest output.mp4
 ```
 
 ## extract audio from video
@@ -119,6 +119,16 @@ ffmpeg \
 #     file './input_02.mkv'
 
 ffmpeg -f concat -safe 0 -i list.txt -c copy output.mp4
+```
+
+## fade in
+```
+ffmpeg -i ./INPUT.MP4 -vf fade=in:0:d=1 [OUTPUT-OPTIONS]
+```
+
+## fade out
+```
+ffmpeg -i ./INPUT.MP4 -vf fade=out:st=4:d=2 [OUTPUT-OPTIONS]
 ```
 
 <br />
