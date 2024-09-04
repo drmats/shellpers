@@ -1,5 +1,5 @@
 cffi==1.15.1
-cryptography==42.0.4
+cryptography==43.0.1
 jeepney==0.8.0
 pycparser==2.21
 SecretStorage==3.3.3
