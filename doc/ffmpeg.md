@@ -101,6 +101,11 @@ ffmpeg -i video.mp4 -i audio.wav -c:v copy -c:a aac -b:a 320k -shortest output.m
 ffmpeg -i video.mp4 -vn -acodec copy output.m4a
 ```
 
+## recode audio to AAC
+```
+ffmpeg -i video.mov -c:v copy -c:a aac -b:a 384k video.mp4
+```
+
 ## timelapse (40x) with hardware decoding and encoding
 ```
 # assumed raw input 30 fps
