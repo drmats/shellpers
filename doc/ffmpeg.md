@@ -101,6 +101,11 @@ ffmpeg -i video.mp4 -i audio.wav -c:v copy -c:a aac -b:a 320k -shortest output.m
 ffmpeg -i video.mp4 -vn -acodec copy output.m4a
 ```
 
+## fuse video and audio from different sources
+```
+ffmpeg -i v.mp4 -i a.wav -c:v copy -map 0:v:0 -map 1:a:0 new.mp4
+```
+
 ## recode audio to AAC
 ```
 ffmpeg -i video.mov -c:v copy -c:a aac -b:a 384k video.mp4
