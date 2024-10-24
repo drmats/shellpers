@@ -111,6 +111,11 @@ ffmpeg -i v.mp4 -i a.wav -c:v copy -map 0:v:0 -map 1:a:0 new.mp4
 ffmpeg -i video.mov -c:v copy -c:a aac -b:a 384k video.mp4
 ```
 
+## recode audio to Linear PCM (32 bit, signed, little endian)
+```
+ffmpeg -i video.mp4 -c:v copy -c:a pcm_s32le video.mov
+```
+
 ## timelapse (40x) with hardware decoding and encoding
 ```
 # assumed raw input 30 fps
