@@ -111,6 +111,11 @@ ffmpeg -i v.mp4 -i a.wav -c:v copy -map 0:v:0 -map 1:a:0 new.mp4
 ffmpeg -i video.mov -c:v copy -c:a aac -b:a 384k video.mp4
 ```
 
+## recode webm
+```
+ffmpeg -fflags +genpts -i video.webm -r 30 -c:v hevc_nvenc -b:v 64M ./out.mov
+```
+
 ## recode audio to Linear PCM (32 bit, signed, little endian)
 ```
 ffmpeg -i video.mp4 -c:v copy -c:a pcm_s32le video.mov
