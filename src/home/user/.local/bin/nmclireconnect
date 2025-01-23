@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Bring up specific connection if not already connected.
+
+# crontab -e
+# */1 * * * * nmclireconnect myconnection
+
+# (c) 2025, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+# ...
+reconnect () {
+    current_connection=$(nmcli -t -f NAME con show --active)
+    if [ "$current_connection" != "$1" ]; then
+        nmcli con up "$1"
+    fi
+}
+
+# usage
+if [ $# -ne 1 ]; then
+    echo "Usage: $(basename "$0") [CONNECTION_NAME]"
+    exit 1
+fi
+
+# globals
+connection_name="$1"
+
+# ...
+reconnect "$connection_name"
