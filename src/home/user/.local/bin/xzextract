@@ -17,7 +17,7 @@ extract () {
 }
 
 # usage
-if [[ $# -ne 2 ]]; then
+if [ $# -ne 2 ]; then
     echo "Usage: $(basename "$0") [SOURCE] [DESTINATION]"
     exit 1
 fi
