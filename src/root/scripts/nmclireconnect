@@ -2,11 +2,11 @@
 
 # Bring up specific connection if not already connected.
 
-# crontab -e
-# */1 * * * * nmclireconnect myconnection
-
 # (c) 2025, drmats
 # Licensed under the Apache License, Version 2.0
+
+# crontab -e
+# */1 * * * * /root/scripts/nmclireconnect myconnection
 
 
 
