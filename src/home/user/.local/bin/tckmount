@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Mount hidden truecrypt devices (with keyfiles).
+
+# (c) 2019, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+if [ $# -ne 2 ]
+then
+    echo "Usage: $(basename $0) DEVICE MOUNTPOINT"
+    exit 2
+fi
+
+MAPPER_NAME=$(head -c 32 /dev/random | sha256sum | head -c 16)
+ROOT_GID=$(getent group root | cut -d: -f3)
+WHEEL_GID=$(getent group wheel | cut -d: -f3)
+
+KEYSDIR="TYPE_YOUR_KEYSDIR_HERE"
+
+cryptsetup --type=tcrypt --tcrypt-hidden \
+    --key-file=$KEYSDIR/ENTER_NAME_OF_KEY_1 \
+    --key-file=$KEYSDIR/ENTER_NAME_OF_KEY_2 \
+    --key-file=$KEYSDIR/ENTER_NAME_OF_KEY_3 \
+    --key-file=$KEYSDIR/ENTER_NAME_OF_KEY_4 \
+    --key-file=$KEYSDIR/ENTER_NAME_OF_KEY_5 \
+    open $1 $MAPPER_NAME
+
+if [ $? -ne 0 ]
+then
+    exit $?
+fi
+
+mount /dev/mapper/$MAPPER_NAME $2 -o uid=$ROOT_GID,gid=$WHEEL_GID,dmask=003,fmask=113
+
+exit $?
