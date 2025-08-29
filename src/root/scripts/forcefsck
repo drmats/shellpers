@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Force FSCK on /
+
+# (c) 2025, drmats
+# Licensed under the Apache License, Version 2.0
+
+# crontab
+# 29 3 * * * /root/scripts/forcefsck
+# 30 3 * * * /sbin/reboot
+
+
+
+
+# ...
+main () {
+    touch /forcefsck
+}
+
+
+
+
+# ...
+main
