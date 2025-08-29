@@ -1,0 +1,22 @@
+# WireGuard initialization systemd unit file.
+#
+# cp /root/scripts/wginit.service /etc/systemd/system/wginit.service
+# systemctl daemon-reload
+# systemctl enable wginit
+
+[Unit]
+Description=WireGuard Init
+After=network.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/root/scripts/wginit
+ExecStop=/root/scripts/wgdestroy
+TimeoutSec=10
+StartLimitInterval=10
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

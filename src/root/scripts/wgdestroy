@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Destroy WireGuard interface and all configured tunnels.
+
+# (c) 2025, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+# ...
+main () {
+    ip link del wg0
+}
+
+
+
+
+# ...
+main

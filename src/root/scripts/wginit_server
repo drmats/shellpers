@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Initialize WireGuard "server" tunnel.
+
+# (c) 2025, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+# ...
+INTERFACE_PRIVATE_KEY="ENTER_PATH_TO_PRIVATE_KEY_FILE"
+INTERFACE_LISTENING_PORT="ENTER_LISTENING_PORT"
+INTERFACE_IP="ENTER_OWN_IP/ENTER_OWN_MASK"
+CLIENT_01_PUBLIC_KEY="ENTER_PUBLIC_KEY_BASE64"
+CLIENT_01_IP="CLIENT_01_IP/32"
+
+
+
+
+# ...
+main () {
+    ip link add wg0 type wireguard
+    ip addr add $INTERFACE_IP dev wg0
+    wg set wg0 \
+        private-key $INTERFACE_PRIVATE_KEY \
+        listen-port $INTERFACE_LISTENING_PORT
+    ip link set wg0 up
+    wg set wg0 \
+        peer $CLIENT_01_PUBLIC_KEY \
+        allowed-ips $CLIENT_01_IP
+}
+
+
+
+
+# ...
+main
