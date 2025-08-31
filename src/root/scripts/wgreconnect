@@ -2,11 +2,11 @@
 
 # Reconnect WireGuard if not connected.
 
-# crontab -e
-# */1 * * * * wgreconnect
-
 # (c) 2025, drmats
 # Licensed under the Apache License, Version 2.0
+
+# crontab -e
+# */1 * * * * /root/scripts/wgreconnect
 
 
 
