@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Reconnect WireGuard if not connected.
+
+# crontab -e
+# */1 * * * * wgreconnect
+
+# (c) 2025, drmats
+# Licensed under the Apache License, Version 2.0
+
+
+
+
+# ...
+main () {
+    peers=$(wg | grep peer)
+    peers_present=$?
+    if [ "$peers_present" != "0" ]; then
+        systemctl restart wginit
+    fi
+}
+
+# ...
+main
