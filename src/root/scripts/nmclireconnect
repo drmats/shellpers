@@ -13,7 +13,7 @@
 
 # ...
 reconnect () {
-    current_connection=$(nmcli -t -f NAME con show --active)
+    current_connection=$(nmcli -t -f NAME con show --active | grep "$1")
     if [ "$current_connection" != "$1" ]; then
         nmcli con up "$1"
     fi
