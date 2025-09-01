@@ -1,0 +1,21 @@
+# Disable power saving for wlan0 - systemd unit file.
+#
+# cp /root/scripts/wlan0-disable-powersave.service /etc/systemd/system/wlan0-disable-powersave.service
+# systemctl daemon-reload
+# systemctl enable wlan0-disable-powersave
+
+[Unit]
+Description=Disable power saving for wlan0
+After=sys-subsystem-net-devices-wlan0.device
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/sbin/iw dev wlan0 set power_save off
+ExecStop=/sbin/iw dev wlan0 set power_save on
+TimeoutSec=10
+StartLimitInterval=10
+Restart=on-failure
+
+[Install]
+WantedBy=sys-subsystem-net-devices-wlan0.device
