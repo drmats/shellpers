@@ -22,6 +22,12 @@ hostnamectl set-hostname awesomemachine
 grubby --remove-args="quiet" --update-kernel ALL
 ```
 
+## enable watchdog
+```
+# vi /etc/systemd/system.conf
+RuntimeWatchdogSec=10s
+```
+
 ## network
 ```
 nmcli d wifi list
