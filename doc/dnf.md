@@ -33,3 +33,8 @@ dnf grouplist
 ```
 dnf --disablerepo="*" --enablerepo="REPO-NAME" list available
 ```
+
+## uninstall package without touching it's unused dependencies
+```
+dnf remove PACKAGE --noautoremove
+```
