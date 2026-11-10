@@ -29,7 +29,7 @@ patchelf --force-rpath --set-rpath \
 readelf -d ./ELF_BINARY | grep -E 'RPATH|RUNPATH'
 ```
 
-## run script
+## run script (save to `run-ELF_BINARY` and `chmod +x` it)
 ```
 #!/bin/bash
 
