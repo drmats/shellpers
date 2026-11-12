@@ -79,5 +79,5 @@ data:
   endpoint_id: 1
   cluster_id: 57345
   attribute: 53296
-  value
+  value: 0
 ```
