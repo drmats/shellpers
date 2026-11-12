@@ -68,3 +68,16 @@ $ firewall-cmd --zone=public --list-all
 ```
 $ hass
 ```
+
+
+## change "ExternalSwitchType.Toggle"
+
+```
+action: zha.set_zigbee_cluster_attribute
+data:
+  ieee: "XX:XX:XX:XX:XX:XX:XX:XX"
+  endpoint_id: 1
+  cluster_id: 57345
+  attribute: 53296
+  value
+```
