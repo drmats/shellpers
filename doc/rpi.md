@@ -171,3 +171,8 @@ dtoverlay=vc4-fkms-v3d    # or dtoverlay=vc4-kms-v3d
     ```
     $ echo "exec openbox-session" > ~/.xinitrc    # user
     ```
+
+
+# python
+
+[binary python builds](https://github.com/astral-sh/python-build-standalone/releases)
