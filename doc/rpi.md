@@ -174,5 +174,21 @@ dtoverlay=vc4-fkms-v3d    # or dtoverlay=vc4-kms-v3d
 
 
 # python
-
 [binary python builds](https://github.com/astral-sh/python-build-standalone/releases)
+
+
+# boot annoyances disable (don't wait for network, don't do network stuff at boot)
+```
+systemctl disable --now unbound-anchor.service
+systemctl mask unbound-anchor.service
+
+systemctl disable --now unbound-anchor.timer
+systemctl mask unbound-anchor.service
+
+systemctl is-enabled unbound-anchor.timer
+systemctl is-enabled unbound-anchor.service
+
+systemctl disable --now NetworkManager-wait-online.service
+systemctl mask NetworkManager-wait-online.service
+systemctl is-enabled NetworkManager-wait-online.service
+```
