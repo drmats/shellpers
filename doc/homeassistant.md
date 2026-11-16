@@ -38,6 +38,28 @@
 ```
 
 
+## hardware - zigbee dongle
+
+```
+$ dmesg | grep -i tty
+$ ls -l /dev/serial/by-id/
+$ udevadm info -a -n /dev/serial/by-id/[DEVICE_ID]
+# chmod 666 /dev/serial/by-id/[DEVICE_ID]
+```
+
+## hardware - queue length for ssd
+
+```
+# udevadm info --query=property --name=/dev/sda | grep -E 'ID_SERIAL_SHORT|ID_SERIAL='
+# cat /etc/udev/rules.d/60-ssd-queue.rules
+ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd*", ENV{ID_SERIAL_SHORT}=="[ID_SERIAL_SHORT]", ATTR{queue/nr_requests}="32"
+
+# udevadm control --reload-rules
+# udevadm trigger --action=change /sys/class/block/sda
+# cat /sys/block/sda/queue/nr_requests
+```
+
+
 ## installation (Home Assistant Core)
 
 ```
